@@ -170,6 +170,7 @@ namespace Wpf45_vlc_UI.DAO
             {
                 CustomMessageBoxView.Show("Hãy sửa lại connection string trong file Connection.xml !!\nInvalidOperation Exception issue: " + ex.Message, CustomMessageBoxView.cMessageBoxTitle.Error, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
                 connectionModel.save();
+
                 return connectionstring;
             }
             

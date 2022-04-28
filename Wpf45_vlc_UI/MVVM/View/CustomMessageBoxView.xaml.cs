@@ -62,7 +62,7 @@ namespace Wpf45_vlc_UI.MVVM.View
                     cMessageBox.butok.SetValue(Grid.ColumnSpanProperty, 2);
                     break;
                 case cMessageBoxTitle.Confirm:
-                    cMessageBox.iconmessagebox.Source = new BitmapImage(new Uri(@"/Image/confirm-icon.png", UriKind.Relative));
+                    cMessageBox.iconmessagebox.Source = new BitmapImage(new Uri(@"/Image/question-mark-icon.png", UriKind.Relative));
                     break;
                 case cMessageBoxTitle.Warning:
                     cMessageBox.iconmessagebox.Source = new BitmapImage(new Uri(@"/Image/warning-icon.png", UriKind.Relative));

@@ -17,9 +17,6 @@
     <Grid>
         <Border Background="#1a1820"
                 CornerRadius="10">
-            <Border.Effect>
-                <DropShadowEffect />
-            </Border.Effect>
             
             <Grid>
                 <Grid.RowDefinitions>
@@ -64,7 +61,11 @@
                     <Grid>
                         <Image Name="iconmessagebox"
                                Margin="10"
-                               Source="{Binding }"/>
+                               Source="{Binding }">
+                            <Image.Effect>
+                                <DropShadowEffect Opacity="0.3"/>
+                            </Image.Effect>
+                        </Image>
                     </Grid>
                     <Grid Grid.Column="1">
                         <ScrollViewer>
