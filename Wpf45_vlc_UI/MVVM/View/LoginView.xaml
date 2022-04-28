@@ -1,0 +1,274 @@
+﻿<Window x:Class="Wpf45_vlc_UI.MVVM.View.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf45_vlc_UI.MVVM.View"
+        mc:Ignorable="d"
+        Title="LoginView" Height="400" Width="300"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        x:Name="LoginWindowView"
+        Left="533"
+        Top="768">
+    
+    <Border Background="#1a1820" 
+            CornerRadius="10 " x:Name="LoginBoder">
+        <!--openning animation-->
+        <Border.Triggers>
+            <EventTrigger RoutedEvent="Border.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation
+                            Storyboard.TargetName="LoginBoder" 
+                            Storyboard.TargetProperty="Width"
+                            From="30" To="300" Duration="0:0:0.3" 
+                            />
+                        <DoubleAnimation
+                            Storyboard.TargetName="LoginBoder" 
+                            Storyboard.TargetProperty="Height"
+                            From="40" To="400" Duration="0:0:0.3" 
+                            />
+                        <DoubleAnimation
+                            Storyboard.TargetName="LoginBoder" 
+                            Storyboard.TargetProperty="Opacity"
+                            From="0.0" To="1.0" Duration="0:0:0.3" 
+                           />
+                        <DoubleAnimation
+                            Storyboard.TargetName="LoginWindowView" 
+                            Storyboard.TargetProperty="Top"
+                            From="768" To="184" Duration="0:0:0.3" 
+                           />
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            
+        </Border.Triggers>
+        <!--end openning animation-->
+        <Grid>
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="100*"/>
+
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <StackPanel Orientation="Horizontal"
+                            WindowChrome.IsHitTestVisibleInChrome="True" 
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Right" Width="121"
+                            >
+                    <Button x:Name="butmini"  
+                            Content="-" 
+                            Width="62" 
+                            Command="{Binding ButMinizeCommand}"
+                            Background="#1a1820"                            
+                            BorderThickness="0"
+                            />
+                    <Button x:Name="butclose"  
+                            Content="X" 
+                            Width="59" 
+                            Command="{Binding ButCloseCommand}"
+                            Background="#1a1820"
+                            BorderThickness="0"
+                            Margin="0,0,10,0">
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border x:Name="border" CornerRadius="0,10,0,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsDefaulted" Value="true">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="#f76345"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Background" TargetName="border" Value="#f76345"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="#f76345"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="true">
+                                                    <Setter Property="Background" TargetName="border" Value="#f76345"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="#f76345"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="false">
+                                                    <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                                                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="Transparent"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <Image Source="../../Image/Security-Camera-icon.png" 
+                   Grid.Row="1"
+                   Opacity="0.3"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10 *"/>
+                    <ColumnDefinition Width="100*"/>
+                    <ColumnDefinition Width="10 *"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="33*"/>
+                    <RowDefinition Height="33*"/>
+                    <RowDefinition Height="33*"/>
+
+                </Grid.RowDefinitions>
+
+
+                <TextBlock Text="" 
+                           FontSize="40"
+                           FontWeight="Bold"
+                           Foreground="#ffff"
+                           Opacity="0.8"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Grid.Column="1"/>
+                <Image Source="/Image/logocam2.png"
+                        VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Grid.Column="1"/>
+                <StackPanel Grid.Column="1"
+                            Grid.Row="1"
+                            Name="stplogin">
+                    <TextBlock Text="User name  " 
+                           FontSize="15"
+                           FontWeight="Bold"
+                           Foreground="#ffff"
+                           Opacity="0.8"
+                           Margin="5,0,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           />
+                    <TextBox x:Name="tbuser"
+                             Opacity="0.6"
+                         Text=""                        
+                         FontSize="20" Style="{DynamicResource LoginTextBoxTheme}"                       
+                            />
+                    <TextBlock Text="Password  " 
+                           FontSize="15"
+                           FontWeight="Bold"
+                           Foreground="#ffff"
+                           Opacity="0.8"
+                           Margin="5,0,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           />
+                    <PasswordBox  x:Name="tbpassword"
+                                Opacity="0.6"
+                                PasswordChar="*"                               
+                                FontSize="20" Style="{DynamicResource LoginPasswordBoxTheme}"                         
+                            />
+                    <CheckBox Content="Hide password"
+                              x:Name="cbhidepassword"
+                              Margin="5"
+                              IsChecked="True"                             
+                              Foreground="#ffff" Checked="cbhidepassword_Checked" Unchecked="cbhidepassword_Unchecked"/>
+                </StackPanel>
+                <Grid Grid.Row="2"
+                      Grid.Column="1">
+                    <Grid.RowDefinitions>
+
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="100*"/>
+
+                    </Grid.RowDefinitions>
+                    <Button IsDefault="True"
+                            x:Name="butlogin" 
+                            Content="Login" 
+                            FontSize="20"
+                            FontWeight="Bold"
+                            Foreground="#ffff"
+                            Background="Aqua"
+                            Opacity="0.9"
+                            Cursor ="Hand"
+                            Command="{Binding LoginCommand}"
+                            CommandParameter="{Binding Children, ElementName=stplogin}" 
+                            Style="{DynamicResource ButAddTheme}"
+
+                            />
+                    <Button
+                            x:Name="butsignin"
+                            Grid.Row="1"
+                            FontSize="13"
+                            Width="100"
+                            Height="20"
+                            BorderThickness="0"
+                            VerticalAlignment="Top"
+                            HorizontalAlignment="Right"
+                            Margin="0,5,0,0"
+                            FontWeight="Bold"
+                            Foreground="#ffff"
+                            Background="Transparent"
+                            Opacity="0.9"
+                            Cursor ="Hand"
+                            Command="{Binding SignInCommand}"
+                            >
+                        <Run>
+                            <Run.Style>
+                                <Style TargetType="Run">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="TextDecorations" Value="Underline" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Run.Style>
+                            Sign in
+                        </Run>
+                        <Button.Style>
+                            <Style TargetType="{x:Type Button}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type Button}">
+                                            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsDefaulted" Value="true">
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                                                </Trigger>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="true">
+                                                    <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                                                </Trigger>
+                                                <Trigger Property="IsEnabled" Value="false">
+                                                    <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                                    <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                                                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="Transparent"/>
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    
+
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

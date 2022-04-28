@@ -1,0 +1,533 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="ListViewItem" x:Key="ListCamsSettingLink">
+
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="#4b4e54"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#393b40"/>
+                <Setter Property="IsSelected" Value="True"/>
+            </Trigger>
+        </Style.Triggers>
+
+        <Setter Property="Background" Value="#292b2f"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ListViewItem">
+                    <Border Background="{TemplateBinding Background}"
+                            Height="auto"
+                            CornerRadius="5"
+                            Margin="2"
+                            x:Name="camsettingborder">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal"
+                                            Margin="0" >
+                                    <Label Content="(づ｡◕‿◕｡)づ   (ﾉ◕ヮ◕)ﾉ*:･ﾟ✧"
+                                           FontWeight="Bold"
+                                           FontSize="13"
+                                           Foreground="#b8b8b8"
+                                           Margin="5,-5,0,-5"/>
+                                        <Label Height="auto"
+                                           Margin="150,0,0,0">
+                                            <Label.Style>
+                                                <Style TargetType="{x:Type Label}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsMouseOver , ElementName=tburl}" Value="True">
+                                                            <Setter Property="Content" Value="Click to edit your camera URL setting *"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsMouseOver , ElementName=tbname}" Value="True">
+                                                            <Setter Property="Content" Value="Click to edit your camera Name setting *"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsEnabled , ElementName=butsave}" Value="True">
+                                                            <Setter Property="Content" Value="Save your Camera Setting*"/>
+                                                            <Setter Property="Foreground" Value="Yellow"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+
+                                                    <Setter Property="Content" Value=""/>
+                                                    <Setter Property="Foreground" Value="#eeeeee"/>
+                                                </Style>
+                                            </Label.Style>
+                                        </Label>
+                                    </StackPanel >
+                                    <StackPanel Orientation="Horizontal"
+                                                Grid.Column="1">
+                                        <Button Command="{Binding DataContext.SaveSelectedItemCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                Content="Save"
+                                                FontWeight="Bold"
+                                                Foreground="#eeee"
+                                                BorderThickness="2,0,0,2"
+                                                Background="#009936"
+                                                Margin="-25,2,0,-5"
+                                                HorizontalAlignment="Right"                                    
+                                                Grid.Column="0"
+                                                Width="70"
+                                                x:Name="butsave">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                                                    <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsDefaulted" Value="true">
+                                                                        <Setter Property="BorderBrush" TargetName="border" Value="#04b843"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                                        <Setter Property="Background" TargetName="border" Value="#04b843"/>
+                                                                        <Setter Property="BorderBrush" TargetName="border" Value="#00cf9e"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsPressed" Value="true">
+                                                                        <Setter Property="Background" TargetName="border" Value="#04b843"/>
+                                                                        <Setter Property="BorderBrush" TargetName="border" Value="#00cf9e"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsEnabled" Value="false">
+                                                                        <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                                                        <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                                                                        <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="Transparent"/>
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                        <Button Command="{Binding DataContext.CancelSelectedItemCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                                Content="Cancel"
+                                                Foreground="#eeee"
+                                                BorderThickness="0"
+                                                Background="Transparent"
+                                                Margin="2,2,0,-5"
+                                                HorizontalAlignment="Right"                                    
+                                                Grid.Column="0"
+                                                Width="55"
+                                                x:Name="butcancel">
+                                            <Button.Style>
+                                                <Style TargetType="{x:Type Button}">
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type Button}">
+                                                                <Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                                                    <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsDefaulted" Value="true">
+                                                                        <Setter Property="BorderBrush" TargetName="border" Value="#2e2e2e"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsMouseOver" Value="true">
+                                                                        <Setter Property="Background" TargetName="border" Value="#2e2e2e"/>
+                                                                        <Setter Property="BorderBrush" TargetName="border" Value="#2e2e2e"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsPressed" Value="true">
+                                                                        <Setter Property="Background" TargetName="border" Value="#2e2e2e"/>
+                                                                        <Setter Property="BorderBrush" TargetName="border" Value="#2e2e2e"/>
+                                                                    </Trigger>
+                                                                    <Trigger Property="IsEnabled" Value="false">
+                                                                        <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                                                                        <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+                                                                        <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="Transparent"/>
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                        <StackPanel.Triggers>
+                                            <EventTrigger RoutedEvent="Button.Click">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled"
+                                                                                        Storyboard.TargetName="butsave">
+                                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False"/>
+                                                        </BooleanAnimationUsingKeyFrames>
+                                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled"
+                                                                                        Storyboard.TargetName="butcancel">
+                                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False"/>
+                                                        </BooleanAnimationUsingKeyFrames>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </StackPanel.Triggers>
+
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel Orientation="Horizontal" Margin="5,0,5,5">
+                                    <StackPanel Margin="10,0,0,0" >
+                                        <Label Content="Camera Name"
+                                               Margin="5,-6,0,-3"
+                                            Foreground="#b8b8b8"
+                                               FontSize="10"
+                                               FontWeight="Bold"
+                                           Background="Transparent"
+                                            />
+                                        <TextBox Text="{Binding CamName}"
+                                                 KeyboardNavigation.TabIndex="0"
+                                            Foreground="#b8b8b8"
+                                             Background="Transparent"
+                                             Width="180"
+                                             x:Name="tbname"
+                                             Style="{DynamicResource CamNameSettingTextBox}"
+                                            />
+                                    </StackPanel>
+                                    <StackPanel Margin="10,0,0,0">
+                                        <Label Content="Camera URL"
+                                               Margin="0,-6,0,-3"
+                                               Foreground="#b8b8b8"
+                                               FontSize="10"
+                                               FontWeight="Bold"
+                                           Background="Transparent"
+                                   />
+                                        <TextBox Text="{Binding CamUrl}"
+                                                 KeyboardNavigation.TabIndex="1"
+                                             Foreground="#eeeeee"
+                                             Background="Transparent"
+                                             Width="550"
+                                             x:Name="tburl"
+                                             Style="{DynamicResource CamUrlSettingTextBox}">
+                                        </TextBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="100*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Button Command="{Binding DataContext.DeleteSelectedItemCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                        Content="X"
+                                        FontSize="15"
+                                        Background="Transparent"
+                                        Foreground="Red"
+                                        BorderThickness="0"
+                                        HorizontalAlignment="Right"                                    
+                                        Grid.Column="1"
+                                        Width="40"
+                                        x:Name="butxoa">
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver , ElementName= camsettingborder}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border x:Name="border" CornerRadius="0,5,5,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsDefaulted" Value="true">
+                                                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="true">
+                                                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                                            </Trigger>
+                                                            <Trigger Property="IsPressed" Value="true">
+                                                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                                            </Trigger>
+                                                            <Trigger Property="IsEnabled" Value="false">
+                                                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Button.Style>
+                                    <Button.ToolTip>
+                                        <ToolTip>
+                                            <ToolTip.Template>
+                                                <ControlTemplate TargetType="ToolTip">
+                                                    <Grid>
+                                                        <Border CornerRadius="5"
+                                                                Opacity="0.8"
+                                                                Background="#2e2e2e">
+                                                            <StackPanel Orientation="Horizontal"
+                                                                            Margin="6">
+                                                                <TextBlock Text="Delete"
+                                                                            FontSize="12"
+                                                                            Foreground="White"/>
+                                                            </StackPanel>
+                                                        </Border>
+
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </ToolTip.Template>
+                                        </ToolTip>
+                                    </Button.ToolTip>
+
+                                </Button>
+                                <Button Command="{Binding DataContext.PreviewSelectedItemCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                        FontSize="15"
+                                        Background="Transparent"
+                                        Foreground="White"
+                                        BorderThickness="0"
+                                        HorizontalAlignment="Right"                                    
+                                        Grid.Column="0"
+                                        Width="40"
+                                        x:Name="butpreview">
+                                    <Image Source="\Image\previewicon.png"
+                                           Margin="5"
+                                           VerticalAlignment="Center"/>
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver , ElementName= camsettingborder}" Value="True">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Button}">
+                                                        <Border x:Name="border" CornerRadius="0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsDefaulted" Value="true">
+                                                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                                            </Trigger>
+                                                            <Trigger Property="IsMouseOver" Value="true">
+                                                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                                            </Trigger>
+                                                            <Trigger Property="IsPressed" Value="true">
+                                                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                                            </Trigger>
+                                                            <Trigger Property="IsEnabled" Value="false">
+                                                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </Button.Style>
+                                    <Button.ToolTip>
+                                        <ToolTip>
+                                            <ToolTip.Template>
+                                                <ControlTemplate TargetType="ToolTip">
+                                                    <Grid>
+                                                        <Border CornerRadius="5"
+                                                                Opacity="0.8"
+                                                                Background="#2e2e2e">
+                                                            <StackPanel Orientation="Horizontal"
+                                                                            Margin="6">
+                                                                <TextBlock Text="Preview"
+                                                                            FontSize="12"
+                                                                            Foreground="White"/>
+                                                            </StackPanel>
+                                                        </Border>
+
+                                                    </Grid>
+                                                </ControlTemplate>
+                                            </ToolTip.Template>
+                                        </ToolTip>
+                                    </Button.ToolTip>
+                                </Button>
+
+                            </Grid>
+
+                        </Grid>
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="TextBox.TextChanged">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled"
+                                            Storyboard.TargetName="butsave">
+                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                        </BooleanAnimationUsingKeyFrames>
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled"
+                                            Storyboard.TargetName="butcancel">
+                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="True"/>
+                                        </BooleanAnimationUsingKeyFrames>
+
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled"
+                                          Storyboard.TargetName="butsave">
+                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False"/>
+                                        </BooleanAnimationUsingKeyFrames>
+                                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="IsEnabled"
+                                          Storyboard.TargetName="butcancel">
+                                            <DiscreteBooleanKeyFrame KeyTime="0:0:0" Value="False"/>
+                                        </BooleanAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Border.Triggers>
+
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type TextBox}"
+           x:Key="CamUrlSettingTextBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border CornerRadius="11"
+                            Background="#353340"
+                            Width="550"
+                            Height="40">
+                        <Grid>
+                            <TextBox 
+                                     Text="{Binding CamUrl}"
+                                     BorderThickness="1"
+                                     Background="Transparent"
+                                     VerticalAlignment="Center"
+                                     Padding="5"
+                                     Foreground="#CFCFCF"
+                                     x:Name="CamBox"
+                                     Width="549"
+                                     Height="39"
+                                     FontSize="15"
+                                     BorderBrush="#2a2a2b"
+                                      Style="{DynamicResource ModernTexBox}"/>
+                            
+                            <TextBlock IsHitTestVisible="False"
+                                       Text="Enter Your Camera URL Here!!"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       FontSize="11"
+                                       Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=CamBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+    </Style>
+    <Style TargetType="{x:Type TextBox}"
+           x:Key="CamNameSettingTextBox">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border CornerRadius="11"
+                            Background="#353340"
+                            Width="170"
+                            Height="40">
+                        <Grid>
+                            <TextBox 
+                                     Text="{Binding CamName}"
+                                     BorderThickness="1"
+                                     Background="Transparent"
+                                     VerticalAlignment="Center"
+                                     Padding="5"
+                                     Foreground="#CFCFCF"
+                                     x:Name="CamBox"
+                                     Width="169"
+                                     Height="39"
+                                     FontSize="15"
+                                     BorderBrush="#2a2a2b"
+                                      Style="{DynamicResource ModernTexBox}"/>
+
+                            <TextBlock IsHitTestVisible="False"
+                                       Text="Enter Your Camera Name Here!!"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Left"
+                                       Margin="10,0,0,0"
+                                       FontSize="11"
+                                       Foreground="DarkGray">
+                                <TextBlock.Style>
+                                    <Style TargetType="{x:Type TextBlock}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Text, ElementName=CamBox}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <!--<Style x:Key="ButtonSaveTheme" TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+        <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="true">
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+</ResourceDictionary>

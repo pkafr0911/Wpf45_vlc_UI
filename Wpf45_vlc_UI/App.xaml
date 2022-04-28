@@ -1,0 +1,59 @@
+﻿<Application x:Class="Wpf45_vlc_UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Wpf45_vlc_UI"
+             xmlns:viewModel="clr-namespace:Wpf45_vlc_UI.MVVM.ViewModel"
+             xmlns:view="clr-namespace:Wpf45_vlc_UI.MVVM.View"
+             StartupUri="Startup.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/TextBoxAddTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ButCloseTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ButAddTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ListCamsTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ListCamSettingTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ListUserTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ListUserSettingTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ListPacketTheme.xaml"/>
+                <ResourceDictionary Source="Theme/LoginTextBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/LoginPasswordBoxTheme.xaml"/>
+                <ResourceDictionary Source="Theme/SettingButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ButtonEditSettingTheme.xaml"/>
+                <ResourceDictionary Source="Theme/ScrollbarTheme.xaml"/>
+
+            </ResourceDictionary.MergedDictionaries>
+
+            <DataTemplate DataType="{x:Type viewModel:AllCamViewModel}">
+                <view:AllCamView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SingleCamViewModel}">
+                <view:SingleCamView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SettingViewModel}">
+                <view:SettingView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MyAccountViewModel}">
+                <view:MyAccountView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CameraViewModel}">
+                <view:CameraVIew/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:UserManagerViewModel}">
+                <view:UserManagerView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:UserManager_AdminViewModel}">
+                <view:UserManager_AdminView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:BuyPackageViewModel}">
+                <view:BuyPackageView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SignInViewModel}">
+                <view:SignInView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+         
+    </Application.Resources>
+</Application>

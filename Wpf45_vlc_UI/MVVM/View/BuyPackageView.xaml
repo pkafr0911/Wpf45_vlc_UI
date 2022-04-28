@@ -1,0 +1,260 @@
+﻿<UserControl x:Class="Wpf45_vlc_UI.MVVM.View.BuyPackageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf45_vlc_UI.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="614" d:DesignWidth="1066">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </UserControl.Resources>
+    <Grid Background="#1f1e26" 
+          Margin="0,0,0,-62">
+        <StackPanel>
+            <Grid Margin="10,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="BUY PACKAGE"
+                   FontSize="40"
+                   Foreground="#eeee"/>
+                <Border Width="250"
+                        CornerRadius="25"
+                        Background="#782900"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,40,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Height="50"
+                                Width="50"
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                CornerRadius="40">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Fill"
+                                             x:Name="avatarimg"
+                                             ImageSource="{Binding AvatarSrc}"/>
+                                </Border.Background>
+
+                            </Border>
+                            <StackPanel VerticalAlignment="Center"
+                                    Margin="5,0,0,0">
+                                <TextBlock 
+                                 FontSize="20"
+                                 FontWeight="Bold"
+                                 Text="{Binding userName}"
+                                 Foreground="White"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock 
+                                 FontSize="15"
+                                 Text="{Binding Wallet}"
+                                 Foreground="#adadad"/>
+                                    <TextBlock 
+                                 FontSize="15"
+                                 Text=" đ"
+                                 Foreground="#adadad"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <Grid Grid.Column="1">
+                            <Button Content="Add Funds"
+                                    Foreground="White"
+                                    Margin="6,9,6,9"
+                                    Width="70"
+                                    FontWeight="Bold"
+                                    BorderThickness="0"
+                                    FontSize="11"
+                                    Background="#009db5"
+                                    Command="{Binding AddFundsCommand}">
+                                <Button.Style>
+                                    <Style TargetType="{x:Type Button}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type Button}">
+                                                    <Border x:Name="border" CornerRadius="20" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                                        <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                                    </Border>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger Property="IsDefaulted" Value="true">
+                                                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsMouseOver" Value="true">
+                                                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsPressed" Value="true">
+                                                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                                                        </Trigger>
+                                                        <Trigger Property="IsEnabled" Value="false">
+                                                            <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                                            <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+            <ScrollViewer Height="600"
+                          Margin="0,10,0,0">
+                <StackPanel>
+                    <Border  Height="500"
+                             Width="1000"
+                             Margin="10"
+                             VerticalAlignment="Center"
+                             CornerRadius="20">
+                        <Button x:Name="butbuypremium"
+                                                BorderThickness="0"
+                                                Content="Buy Premium"
+                                                Background="White"
+                                                Foreground="#8016f0"
+                                                FontSize="20"
+                                                Margin="398,259,402,191"
+                                                Width="200"
+                                                Command="{Binding PurchaseCommand}"
+                                                Height="50"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"
+                                                Style="{DynamicResource ButtonEditSettingTheme}"/>
+                        <Border.Background>
+                            <ImageBrush Stretch="Fill"
+                                         ImageSource="/Image/TNCpremiumbanner2.jpg"/>
+                        </Border.Background>
+
+                    </Border>
+                    <Border Height="200"
+                    Margin="20,10,20,20"
+                    CornerRadius="10">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                                <GradientStop Color="#8a5f2d" Offset="0"/>
+                                <GradientStop Color="#b89032" Offset="0.567"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <ListView ItemsSource="{Binding PackageList}"
+                                          x:Name="LvCameraShowing"
+                                      Background="Transparent"
+                                      BorderThickness="0"
+                                      SelectedItem="{Binding SelectedPackage}"
+                                      ItemContainerStyle="{DynamicResource ListPackage}">
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Horizontal"></StackPanel>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                            </ListView>
+                        </Grid>
+
+                    </Border>
+
+                    <Border Height="320"
+                    Width="600"
+                    HorizontalAlignment="Left"
+                    Margin="20,5,20,20"
+                    CornerRadius="10">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.504,1.5" StartPoint="0.504,0.03">
+                                <GradientStop Color="#b89032" Offset="0"/>
+                                <GradientStop Color="#dbd937" Offset="0.567"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <StackPanel>
+                            <Border CornerRadius="10,10,0,0"
+                            Background="#3d3d3d">
+                                <Grid  Margin="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100*"/>
+                                        <ColumnDefinition Width="66*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="My wallet:"
+                                       FontWeight="Bold"
+                                       Foreground="#eeee"
+                                       FontSize="25"/>
+                                    <StackPanel Orientation="Horizontal"
+                                        Grid.Column="1">
+                                        <Label Content="{Binding Wallet}"
+                                       Foreground="#eeee"
+                                       FontSize="25"/>
+                                        <Label Content="đ"
+                                       Foreground="#eeee"
+                                       FontSize="25"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="66*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.ColumnSpan="2">
+                                    <Label Content="Package name: "
+                                           FontSize="22" 
+                                           Margin="0,-5,0,5"/>
+                                    <Label Content="Price: "
+                                           FontSize="22" 
+                                           Margin="0,-5,0,5"/>
+                                    <Label Content="VAT:"
+                                           FontSize="22" 
+                                           Margin="0,-5,0,5"/>
+                                    <Label Content="_______________________________________________________________________________________________________________________________"
+                                        FontSize="22" 
+                                        Opacity="0.5"
+                                        Margin="0,-20,0,0"/>    
+                                    <Label Content="Total:"
+                                           FontWeight="Bold"
+                                           FontSize="22" 
+                                           Margin="0,-5,0,5"/>
+                                    <Button x:Name="butEditUser"
+                                                BorderThickness="0"
+                                                Content="Purchase"
+                                                Background="#009db5"
+                                                Foreground="White"
+                                                FontSize="20"
+                                                Margin="0"
+                                                Width="200"
+                                                Command="{Binding PurchaseCommand}"
+                                                Height="50"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"
+                                                Style="{DynamicResource ButtonEditSettingTheme}"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <Label Content="{Binding SelectedPackage.PackageName}"
+                                           FontSize="22" 
+                                           Margin="0,-5,0,5"/>
+                                    <Label Content="{Binding SelectedPackage.Price}"
+                                           FontSize="22" 
+                                           Margin="0,-5,0,5"/>
+                                    <Label Content="{Binding SelectedPackage.VAT}"
+                                           FontSize="22" 
+                                           Margin="0,-5,0,5"/>
+                                    <Label Content=""
+                                           FontSize="22" 
+                                           Margin="0,-20,0,0"/>
+                                    <Label Content="{Binding SelectedPackage.Total}"
+                                           FontWeight="Bold"
+                                           FontSize="22" 
+                                           Margin="0,-5,0,5"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+
+                    </Border>
+                </StackPanel>
+            </ScrollViewer>
+        </StackPanel>
+    </Grid>
+</UserControl>
