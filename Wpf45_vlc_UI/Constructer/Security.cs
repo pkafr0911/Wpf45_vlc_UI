@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Wpf45_vlc_UI.MVVM.View;
 
 namespace Wpf45_vlc_UI.Constructer
 {
@@ -56,7 +57,7 @@ namespace Wpf45_vlc_UI.Constructer
                         }
                         catch (CryptographicException ex)
                         {
-                            MessageBox.Show("Phiên Đăng nhập thất bại\n Exception Message: " + ex.Message);
+                            CustomMessageBoxView.Show("Phiên Đăng nhập thất bại\n Exception Message: " + ex.Message, CustomMessageBoxView.cMessageBoxTitle.Error, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
                             return null;
                         }
                         

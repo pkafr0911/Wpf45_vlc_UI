@@ -66,7 +66,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                 }
                     
             });
-            #region
+            #region Done command
             DoneCommand = new RelayCommand<UIElementCollection>((p) => true, p =>
             {
                 #region update user
@@ -133,13 +133,12 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                     {
                         if (AccountDAO.Instance.SaveAccountInfo(0, username, password, 2, 0, 2, 0, 0))
                         {
-
                             CustomMessageBoxView.Show("Account have been saved successfully ✓ \n Login to continue ^^", CustomMessageBoxView.cMessageBoxTitle.Infor, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
                             signInView.Close();
                         }
                         else
                         {
-                            MessageBox.Show("Lưu User thất bại!!!");
+                            CustomMessageBoxView.Show("Fail to save user!!!", CustomMessageBoxView.cMessageBoxTitle.Error, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
                         }
                     }
                     else

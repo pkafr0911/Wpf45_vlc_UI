@@ -265,7 +265,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                     }
                     else
                     {
-                        CustomMessageBoxView.Show("Xóa cam thất bại!!!" + camname, CustomMessageBoxView.cMessageBoxTitle.Confirm, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
+                        CustomMessageBoxView.Show("Xóa cam thất bại!!!" + camname, CustomMessageBoxView.cMessageBoxTitle.Error, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
                     }
                 }
                 else

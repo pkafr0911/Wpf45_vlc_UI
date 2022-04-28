@@ -270,7 +270,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                 }
                 catch (IOException ex)
                 {
-                    MessageBox.Show("ảnh đang đc sử dụng\n " + ex.Message);
+                    CustomMessageBoxView.Show("ảnh đang đc sử dụng\n " + ex.Message, CustomMessageBoxView.cMessageBoxTitle.Error, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
                 }
                 catch (ArgumentException)
                 {
@@ -352,13 +352,13 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                 {
                     if (AccountDAO.Instance.SaveAccountInfo(UId, username, password, Roles, UserGroupID, CamQuantity, UserQuantity, Wallet))
                     {
+                        CustomMessageBoxView.Show("Account have been saved successfully ✓ \n Login Again to continue ^^", CustomMessageBoxView.cMessageBoxTitle.Success, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
                         SuccessMessage("Account have been saved successfully ✓ \n Login Again to continue ^^");
-                        MessageBox.Show("Account have been saved successfully ✓ \n Login Again to continue ^^");
                         logOut();
                     }
                     else
                     {
-                        MessageBox.Show("Lưu User thất bại!!!");
+                        CustomMessageBoxView.Show("Lưu User thất bại!!!", CustomMessageBoxView.cMessageBoxTitle.Error, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
                     }
                 }
                 else
