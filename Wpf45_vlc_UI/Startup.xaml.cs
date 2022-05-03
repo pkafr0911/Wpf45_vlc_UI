@@ -61,6 +61,18 @@ namespace Wpf45_vlc_UI
                         MVVM.ViewModel.MainViewModel mvm = new MVVM.ViewModel.MainViewModel();
                         mvm.userName = username;
                         mvm.ListOfCams = CameraDAO.Instance.GetCameraInfor(username);
+
+                        //load anh avatar
+                        DirectoryInfo dir_info = new DirectoryInfo(System.IO.Path.Combine(Environment.CurrentDirectory, "Avatar"));
+                        foreach (FileInfo file_info in dir_info.GetFiles())
+                        {
+                            if ((file_info.Extension.ToLower() == ".jpg") ||
+                                (file_info.Extension.ToLower() == ".png"))
+                            {
+                                mvm.AvatarSrc = file_info.FullName;
+                            }
+
+                        }
                     }
 
                 }

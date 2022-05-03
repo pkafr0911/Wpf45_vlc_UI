@@ -16,6 +16,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
     {
         public BuyPackageView buyPackageView { get; set; }
         public MainRelayCommand PurchaseCommand { get; set; }
+        public MainRelayCommand BuyPremiumCommand { get; set; }
         public MainRelayCommand AddFundsCommand { get; set; }
 
         private ObservableCollection<PackageModel> packageList;
@@ -168,13 +169,91 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                     }
                     if (Wallet - total < 0)
                     {
-                        MessageBox.Show("mua thất bại!!!");
+                        CustomMessageBoxView.Show("Purchase fail!!!", CustomMessageBoxView.cMessageBoxTitle.Error, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
                         return;
                     }
 
-                    if (AccountDAO.Instance.SaveAccountInfo(UId, userName, PassWord, Roles, UserGroupID, CamQuantity + camquantity, UserQuantity + userquantity, Wallet - total))
+                    System.Windows.Forms.DialogResult result = CustomMessageBoxView.Show("Are Your sure want to buy this package ", CustomMessageBoxView.cMessageBoxTitle.Confirm, CustomMessageBoxView.cMessageBoxButton.Yes, CustomMessageBoxView.cMessageBoxButton.No);
+
+                    if (result == System.Windows.Forms.DialogResult.Yes)
                     {
-                        MessageBox.Show("mua thanh cong");
+                        if (AccountDAO.Instance.SaveAccountInfo(UId, userName, PassWord, Roles, UserGroupID, CamQuantity + camquantity, UserQuantity + userquantity, Wallet - total))
+                        {
+                            CustomMessageBoxView.Show("Purchase success!", CustomMessageBoxView.cMessageBoxTitle.Success, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
+                            UpdateAcountInfor();
+                        }
+                        else
+                        {
+                            MessageBox.Show("mua thất bại!!!");
+                        }
+                    }
+
+                        
+                }
+                catch(NullReferenceException ex)
+                {
+                    CustomMessageBoxView.Show("Purchase fail!!! \n\n" +ex, CustomMessageBoxView.cMessageBoxTitle.Error, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
+                }
+                
+
+            });
+
+            BuyPremiumCommand = new MainRelayCommand(o =>
+            {
+                try
+                {
+
+                    if (UserGroupID != 0)
+                    {
+                        CustomMessageBoxView.Show("Your Account already is Premium", CustomMessageBoxView.cMessageBoxTitle.Infor, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
+                        return;
+                    }
+
+                    System.Windows.Forms.DialogResult result = CustomMessageBoxView.Show("Are Your sure want to buy Premium 100.000đ", CustomMessageBoxView.cMessageBoxTitle.Confirm, CustomMessageBoxView.cMessageBoxButton.Yes, CustomMessageBoxView.cMessageBoxButton.No);
+
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        if (Wallet - 100000 < 0)
+                        {
+                            CustomMessageBoxView.Show("Purchase fail!!!", CustomMessageBoxView.cMessageBoxTitle.Error, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
+                            return;
+                        }
+
+                        if (AccountDAO.Instance.SaveAccountInfo(UId, userName, PassWord, Roles, UserGroupID, CamQuantity , UserQuantity + 1, Wallet - 100000))
+                        {
+                            if (AccountDAO.Instance.UpgradeAccount(UId))
+                            {
+                                CustomMessageBoxView.Show("Your account is premium now ^^", CustomMessageBoxView.cMessageBoxTitle.Success, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
+                                UpdateAcountInfor();
+                            }
+                            else
+                            {
+                                MessageBox.Show("nâng cấp thất bại!!!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("mua thất bại!!!");
+                        }
+                    }
+
+
+                }
+                catch (NullReferenceException ex)
+                {
+                    MessageBox.Show("" + ex);
+                }
+
+            });
+
+            AddFundsCommand = new MainRelayCommand(o =>
+            {
+                System.Diagnostics.Process.Start("https://sandbox.vnpayment.vn/tryitnow/Home/CreateOrder");
+                if (UserGroupID == 0)
+                {
+                    if (AccountDAO.Instance.SaveAccountInfo(UId, userName, PassWord, Roles, UserGroupID, CamQuantity, UserQuantity, Wallet + 100000))
+                    {
+                        CustomMessageBoxView.Show("Add funds success ^^", CustomMessageBoxView.cMessageBoxTitle.Success, CustomMessageBoxView.cMessageBoxButton.Ok, CustomMessageBoxView.cMessageBoxButton.Cancel);
                         UpdateAcountInfor();
                     }
                     else
@@ -182,16 +261,6 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                         MessageBox.Show("mua thất bại!!!");
                     }
                 }
-                catch(NullReferenceException ex)
-                {
-                    MessageBox.Show(""+ex);
-                }
-                
-
-            });
-            AddFundsCommand = new MainRelayCommand(o =>
-            {
-                System.Diagnostics.Process.Start("https://sandbox.vnpayment.vn/tryitnow/Home/CreateOrder");
 
             });
         }

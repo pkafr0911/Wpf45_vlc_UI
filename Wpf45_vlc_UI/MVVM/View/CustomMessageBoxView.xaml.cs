@@ -55,6 +55,9 @@ namespace Wpf45_vlc_UI.MVVM.View
             {
                 case cMessageBoxTitle.Error:
                     cMessageBox.iconmessagebox.Source = new BitmapImage(new Uri(@"/Image/error-icon.png", UriKind.Relative));
+                    cMessageBox.butcancel.Visibility = Visibility.Collapsed;
+                    cMessageBox.butok.SetValue(Grid.ColumnSpanProperty, 2);
+                    break;
                     break;
                 case cMessageBoxTitle.Infor:
                     cMessageBox.iconmessagebox.Source = new BitmapImage(new Uri(@"/Image/infor-icon.png", UriKind.Relative));

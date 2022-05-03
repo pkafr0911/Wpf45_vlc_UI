@@ -29,14 +29,14 @@
                                       FontSize="20"
                                       Height="50"
                                       Foreground="White"
-                                      Visibility="{Binding IsManagerVisibility, Converter={StaticResource BooleanToVisibility}}"
+                                      Visibility="{Binding IsCamerarVisibility, Converter={StaticResource BooleanToVisibility}}"
                                       Style="{StaticResource MenuButtonTheme}"
                                       Command="{Binding CameraCommand}"/>
                     <RadioButton  Content="User Manager"
                                       FontSize="20"
                                       Height="50"
                                       Foreground="White"
-                                      Visibility="{Binding IsManagerVisibility, Converter={StaticResource BooleanToVisibility}}"
+                                      Visibility="{Binding IsUserManagerVisibility, Converter={StaticResource BooleanToVisibility}}"
                                       Style="{StaticResource MenuButtonTheme}"
                                       Command="{Binding UserManagerCommand}"/>
                     <TextBlock Text="----------------------------------"

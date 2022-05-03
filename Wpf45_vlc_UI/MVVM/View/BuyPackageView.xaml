@@ -123,7 +123,7 @@
                                                 FontSize="20"
                                                 Margin="398,259,402,191"
                                                 Width="200"
-                                                Command="{Binding PurchaseCommand}"
+                                                Command="{Binding BuyPremiumCommand}"
                                                 Height="50"
                                                 VerticalAlignment="Center"
                                                 HorizontalAlignment="Center"

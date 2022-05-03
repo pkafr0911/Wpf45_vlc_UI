@@ -73,14 +73,26 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
             }
         }
 
-        private bool _isManagerVisibility;
+        private bool _isUserManagerVisibility;
 
-        public bool IsManagerVisibility
+        public bool IsUserManagerVisibility
         {
-            get { return _isManagerVisibility; }
+            get { return _isUserManagerVisibility; }
             set
             {
-                _isManagerVisibility = value;
+                _isUserManagerVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _isCamerarVisibility;
+
+        public bool IsCamerarVisibility
+        {
+            get { return _isCamerarVisibility; }
+            set
+            {
+                _isCamerarVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -124,7 +136,8 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                 fs.Close();
 
             }
-            IsManagerVisibility = false;//set quền mặc định của user k có quền chỉnh cam cà user 
+            IsUserManagerVisibility = false;//set quền mặc định của user k có quền chỉnh cam và user 
+            IsCamerarVisibility = false;
 
             #region Get Account Infor
             //lấy thông tin của account
@@ -142,10 +155,15 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                 fullUserModel.Wallet = s.Wallet;
             }
             #endregion
-            //nếu roles nhỏ hơn 3 sẽ có quền điêu manager
+            //set quền cho các loại account
             if (fullUserModel.Roles < 3)
             {
-                IsManagerVisibility = true;
+                IsUserManagerVisibility = true;
+                IsCamerarVisibility = true;
+            }
+            if (fullUserModel.UserGroupID == 0)
+            {
+                IsUserManagerVisibility = false;
             }
             //load avatar
             DirectoryInfo dir_info = new DirectoryInfo(System.IO.Path.Combine(Environment.CurrentDirectory, "Avatar"));

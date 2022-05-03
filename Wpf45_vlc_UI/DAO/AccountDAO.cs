@@ -95,6 +95,15 @@ namespace Wpf45_vlc_UI.DAO
             return result != 0;
         }
 
+        //nâng cấp tài khoản
+        public bool UpgradeAccount(int uid)
+        {
+
+            string query = string.Format("USP_UpgradeAccount @Uid = {0}", uid);
+            int result = DataProvider.Instance.ExecuteNonQuery(query);
+            return result != 0;
+        }
+
         //xóa tài khoản
         public bool DeleteAccountInfo(int uid)
         {

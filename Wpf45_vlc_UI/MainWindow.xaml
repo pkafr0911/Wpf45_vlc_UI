@@ -73,6 +73,64 @@
                             Background="#1a1820"                            
                             BorderThickness="0"
                             />
+                    <Grid Width="62" >
+                        <Button x:Name="butfullscreen"  
+                                Content="🗖" 
+                                FontSize="20"
+                                Width="62" 
+                                Command="{Binding ButfullscreenCommand}"
+                                Background="#1a1820"                            
+                                BorderThickness="0"
+                                >
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <ToolTip.Template>
+                                        <ControlTemplate TargetType="ToolTip">
+                                            <Grid>
+                                                <Border CornerRadius="5"
+                                                                Opacity="0.8"
+                                                                Background="#2e2e2e">
+                                                    <TextBlock Text="Full screen mode"
+                                                                        FontSize="12"
+                                                                       Margin="8"
+                                                                       Foreground="White"/>
+                                                </Border>
+
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </ToolTip.Template>
+                                </ToolTip>
+                            </Button.ToolTip>
+                        </Button>
+                        <Button x:Name="butnotfullscreen"  
+                                Content="🗖" 
+                                Width="62" 
+                                Command="{Binding ButNormalScreenCommand}"
+                                Background="#1a1820"                            
+                                BorderThickness="0"
+                                Visibility="{Binding IsFullScreenVisible, Converter={StaticResource BooleanToVisibility}}"
+                                >
+                            <Button.ToolTip>
+                                <ToolTip>
+                                    <ToolTip.Template>
+                                        <ControlTemplate TargetType="ToolTip">
+                                            <Grid>
+                                                <Border CornerRadius="5"
+                                                                Opacity="0.8"
+                                                                Background="#2e2e2e">
+                                                    <TextBlock Text="Normal screen mode"
+                                                                        FontSize="12"
+                                                                       Margin="8"
+                                                                       Foreground="White"/>
+                                                </Border>
+
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </ToolTip.Template>
+                                </ToolTip>
+                            </Button.ToolTip>
+                        </Button>
+                    </Grid>
                     <Button x:Name="butclose"  
                             Content="X" 
                             Width="59" 
@@ -205,12 +263,18 @@
 
                                     <StackPanel 
                                             Orientation="Horizontal">
-                                        <Border Background="#02bcd1"
-                                                x:Name="status"
+                                        <Border x:Name="status"
                                                 Margin="10,5,5,5"
                                                 Height="35"
                                                 Width="35"
-                                                CornerRadius="25"/>
+                                                CornerRadius="25">
+                                            <Border.Background>
+                                                <ImageBrush Stretch="Fill"
+                                                                x:Name="avatarimg"
+                                                                ImageSource="{Binding AvatarSrc}"/>
+                                            </Border.Background>
+
+                                        </Border>
                                         <Label Content="@"
                                            Foreground="#eeeeee"
                                            VerticalAlignment ="Center"
@@ -435,7 +499,8 @@
 
                     <!--view camera streamming area-->
                     <Grid Grid.Column="1" 
-                          Grid.Row="1 ">
+                          Grid.Row="1 "
+                          x:Name="cameragrid">
                         <Border Background="#1f1e26">
                             <Grid x:Name="TheGrid" 
                               Margin="10">

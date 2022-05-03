@@ -145,12 +145,35 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
+        private bool _isFullScreenVisible;
+
+        public bool IsFullScreenVisible
+        {
+            get { return _isFullScreenVisible; }
+            set
+            {
+                _isFullScreenVisible = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _avatarSrc;
+
+        public string AvatarSrc
+        {
+            get { return _avatarSrc; }
+            set
+            {
+                _avatarSrc = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
 
         public MainViewModel()
         {
             mainWindow = new MainWindow();
             mainWindow.DataContext = this; //set datacontext cho mainwindow
+            IsFullScreenVisible = false;//mặc định ở chế độ window
 
             ListOfCams = new ObservableCollection<CamSettingModel>();
             ShowingCamList = new ObservableCollection<CamSettingModel>();
@@ -181,6 +204,8 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
             AddPreView("rtsp://ta12.vddns.vn:554/av0_0");
             ClearPreView();
             #endregion
+
+           
             #region các command
 
             //command chuyển sang tab hiện tất cả cam
@@ -220,6 +245,18 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
             ButMinizeCommand = new MainRelayCommand(o =>
             {
                 mainWindow.WindowState = WindowState.Minimized;
+            });
+            //full sceeen
+            ButfullscreenCommand = new MainRelayCommand(o =>
+            {
+                fullScreanMode();
+                mainWindow.WindowState = WindowState.Maximized;
+            });
+            //not full sceeen
+            ButNormalScreenCommand = new MainRelayCommand(o =>
+            {
+                NormalScreanMode();
+                mainWindow.WindowState = WindowState.Normal;
             });
             //command xóa phần tử đc chọn trong list
             DeleteSelectedItemCommand = new MainRelayCommand(o =>
@@ -389,6 +426,8 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
         public MainRelayCommand CurrentViewSettingCommand { get; set; }
         public MainRelayCommand ButCloseCommand { get; set; }
         public MainRelayCommand ButMinizeCommand { get; set; }
+        public MainRelayCommand ButfullscreenCommand { get; set; }
+        public MainRelayCommand ButNormalScreenCommand { get; set; }
         public MainRelayCommand SelectedItemCommand { get; set; }
         public MainRelayCommand DeleteSelectedItemCommand { get; set; }
         public MainRelayCommand ClearCommand { get; set; }
@@ -623,6 +662,26 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
             IsControllerVisible = false;
             IsSettingImageURL = "Image/65-654632_setting-icon-clipart-png-download.png";
             SettingButtonContent = "Setting";
+        }
+
+        private void fullScreanMode()
+        {
+            IsFullScreenVisible = true;
+            Grid.SetRow(mainWindow.cameragrid, 0); //set vị trí hàng
+            Grid.SetColumn(mainWindow.cameragrid, 0);//set vị trí cột
+            Grid.SetRowSpan(mainWindow.cameragrid, 2);
+            Grid.SetColumnSpan(mainWindow.cameragrid, 2);
+
+        }
+
+        private void NormalScreanMode()
+        {
+            IsFullScreenVisible = false;
+            Grid.SetRow(mainWindow.cameragrid, 1); //set vị trí hàng
+            Grid.SetColumn(mainWindow.cameragrid, 1);//set vị trí cột
+            Grid.SetRowSpan(mainWindow.cameragrid, 1);
+            Grid.SetColumnSpan(mainWindow.cameragrid, 1);
+
         }
 
 
