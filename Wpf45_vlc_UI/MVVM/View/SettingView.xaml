@@ -55,13 +55,13 @@
                                       Height="50"
                                       Foreground="White"
                                       Style="{StaticResource MenuButtonTheme}"
-                                      Command="{Binding }"/>
+                                      Command="{Binding AboutUsCommand}"/>
                     <RadioButton  Content="Help"
                                       FontSize="20"
                                       Height="50"
                                       Foreground="White"
                                       Style="{StaticResource MenuButtonTheme}"
-                                      Command="{Binding }"/>
+                                      Command="{Binding HelpCommand}"/>
                     
                     <TextBlock Text="----------------------------------"
                                HorizontalAlignment="Center"

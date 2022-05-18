@@ -28,10 +28,9 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
         public UserManagerViewModel UserManagerVM { get; set; }
         public UserManager_AdminViewModel UserManagerAdminVM { get; set; }
         public BuyPackageViewModel BuyPackeVM { get; set; }
-        public MainRelayCommand MyAccountCommand { get; set; }
-        public MainRelayCommand CameraCommand { get; set; }
-        public MainRelayCommand UserManagerCommand { get; set; }
-        public MainRelayCommand BuyPacketCommand { get; set; }
+        public AboutUsViewModel AboutUsVM { get; set; }
+        public HelpViewModel HelpVM { get; set; }
+
 
         private object _currentView_In_Setting;
 
@@ -112,6 +111,8 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
             UserManagerVM = new UserManagerViewModel();
             UserManagerAdminVM = new UserManager_AdminViewModel();
             BuyPackeVM = new BuyPackageViewModel();
+            AboutUsVM = new AboutUsViewModel();
+            HelpVM = new HelpViewModel();
             CurrentView_In_Setting = MyAccountVM;//đặt mặc định
             #endregion 
             //lấy thông itn account đăng nhập
@@ -155,6 +156,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                 fullUserModel.Wallet = s.Wallet;
             }
             #endregion
+            #region set quền cho các loại account
             //set quền cho các loại account
             if (fullUserModel.Roles < 3)
             {
@@ -165,6 +167,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
             {
                 IsUserManagerVisibility = false;
             }
+            #endregion
             //load avatar
             DirectoryInfo dir_info = new DirectoryInfo(System.IO.Path.Combine(Environment.CurrentDirectory, "Avatar"));
             foreach (FileInfo file_info in dir_info.GetFiles())
@@ -185,7 +188,8 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
             MyAccountVM.CamQuantity = fullUserModel.CamQuantity;
             MyAccountVM.Wallet = fullUserModel.Wallet;
 
-           //command chuyển tab sang myaccount
+            #region các command
+            //command chuyển tab sang myaccount
             MyAccountCommand = new MainRelayCommand(o =>
             {
                 AccountInfor = AccountDAO.Instance.GetAccountInfor(username);
@@ -313,7 +317,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                 }
 
             });
-            //
+            //command chuyển tab sang BuyPacket
             BuyPacketCommand = new MainRelayCommand(o =>
             {
                 #region Get Account Infor
@@ -352,16 +356,36 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
 
             });
 
+            //command chuyển tab sang about us
+            AboutUsCommand = new MainRelayCommand(o =>
+            {
+                CurrentView_In_Setting = AboutUsVM;
+            });
+            //command chuyển tab sang help
+            HelpCommand = new MainRelayCommand(o =>
+            {
+                CurrentView_In_Setting = HelpVM;
+            });
 
             //đăng xuất
             LogOutCommand = new MainRelayCommand(o =>
             {
                 logOut();
             });
-
+            #endregion
 
 
         }
+
+        #region khai báo các command
+        public MainRelayCommand MyAccountCommand { get; set; }
+        public MainRelayCommand CameraCommand { get; set; }
+        public MainRelayCommand UserManagerCommand { get; set; }
+        public MainRelayCommand BuyPacketCommand { get; set; }
+        public MainRelayCommand AboutUsCommand { get; set; }
+        public MainRelayCommand HelpCommand { get; set; }
+        #endregion
+
         #region function
         private void logOut()
         {

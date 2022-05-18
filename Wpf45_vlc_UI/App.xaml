@@ -52,6 +52,12 @@
             <DataTemplate DataType="{x:Type viewModel:SignInViewModel}">
                 <view:SignInView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:AboutUsViewModel}">
+                <view:AboutUsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HelpViewModel}">
+                <view:HelpView/>
+            </DataTemplate>
 
         </ResourceDictionary>
          

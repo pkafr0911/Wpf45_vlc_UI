@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="Wpf45_vlc_UI.MVVM.View.HelpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Wpf45_vlc_UI.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="614" d:DesignWidth="1066">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </UserControl.Resources>
+
+    <Grid Background="#1f1e26" 
+          Margin="0,0,0,-62">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer>
+            <StackPanel>
+                <Label Content="Help"
+                       Foreground="#eeee"
+                       Margin="20,0,0,10"
+                       FontSize="30"
+                       FontWeight="Bold"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Hướng dẫn sử dụng"
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="50,10,0,10"
+                           FontWeight="Bold"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Home"
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,0,0,10"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="My Account"
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,0,0,10"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Camera"
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,0,0,10"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="User Manager"
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,0,0,10"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Buy package"
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,0,0,10"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Khi nâng cấp tài khoản lên Premium Account bạn có thể bắt đầu chia sẻ và quản lý camera của bạn với nhữnng account bạn tạo cho họ."
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,0,0,10"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Các lỗi thường gặp"
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="50,10,0,10"
+                           FontWeight="Bold"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="TNC là phần mềm hỗ trợ người dùng quản lý camera trong công ty, doanh nghiệp, cửa hàng, căn hộ của mọi người một cách dễ dàng. Với dao diện thân thiện, dễ sự dụng, chúng tôi luôn hướng tới trải nghiệp người dùng một cách tuyệt với nhất."
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,0,0,10"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Với tốc độ kêt nối nhanh chóng dễ dàng, người dùng hoàn cho thể quản lý dễ dàng những camera của. Phần mềm hiện tại hỗ trỡ hầu hết các luồng trực triếp. Không những vậy TNC còn cho bạn khả năng tạo những tài khoản khác, việc này giúp bạn có thể dễ dàng hơn trong việc kiểm soát, trao quền nhất định cho nhưng tài khoản chỉ quan sát được những camera nhất định mà bạn muốn."
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,0,0,10"/>
+                
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Liên Hệ"
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="50,10,0,10"
+                           FontWeight="Bold"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Email: pkafr0911@gmail.com"
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,-5,0,10"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="SĐT: 0364242516"
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,-5,0,10"/>
+                <TextBlock TextWrapping="WrapWithOverflow"
+                           Text="Facebook: "
+                           Foreground="#b8b8b8"
+                           FontSize="15"
+                           Margin="70,-5,0,10">
+                    <Hyperlink NavigateUri="https://www.facebook.com/pkafr0911/" RequestNavigate="Hyperlink_RequestNavigate">
+                                     Nguyễn Thành
+                            </Hyperlink>
+                </TextBlock>
+                
+
+            </StackPanel>
+
+        </ScrollViewer>
+    </Grid>
+</UserControl>

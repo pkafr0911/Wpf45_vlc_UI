@@ -219,7 +219,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                             return;
                         }
 
-                        if (AccountDAO.Instance.SaveAccountInfo(UId, userName, PassWord, Roles, UserGroupID, CamQuantity , UserQuantity + 1, Wallet - 100000))
+                        if (AccountDAO.Instance.SaveAccountInfo(UId, userName, PassWord, Roles, UserGroupID, CamQuantity + 2, UserQuantity + 1, Wallet - 100000))
                         {
                             if (AccountDAO.Instance.UpgradeAccount(UId))
                             {

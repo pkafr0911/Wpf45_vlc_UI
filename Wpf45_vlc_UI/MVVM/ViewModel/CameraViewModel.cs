@@ -247,16 +247,18 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
                 int uid = SelectedCam.UId;
                 int camid = SelectedCam.CamID;
 
+                //nếu là cam chưa lưu thì thực hiện xóa luôn, k cần thông báo
+                if (camid == 0)
+                {
+                    ListOfCams = CameraDAO.Instance.GetCameraInfor(userName);
+                    CurrentCamQuantity = ListOfCams.Count();
+                    return;
+                }
+
                 System.Windows.Forms.DialogResult result = CustomMessageBoxView.Show("Are Your sure want to delete " + camname, CustomMessageBoxView.cMessageBoxTitle.Confirm, CustomMessageBoxView.cMessageBoxButton.Yes, CustomMessageBoxView.cMessageBoxButton.No);
 
-                if(result == System.Windows.Forms.DialogResult.Yes)
+                if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    if (camid == 0)
-                    {
-                        ListOfCams = CameraDAO.Instance.GetCameraInfor(userName);
-                        CurrentCamQuantity = ListOfCams.Count();
-                        return;
-                    }
                     if (CameraDAO.Instance.DeleteCameraInfo(camid))
                     {
                         ListOfCams = CameraDAO.Instance.GetCameraInfor(userName);
