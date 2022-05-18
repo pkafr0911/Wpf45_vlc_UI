@@ -385,6 +385,14 @@
     <Resource Include="Image\HelpImage\Screenshot 2022-05-18 102505.png" />
     <Resource Include="Image\HelpImage\Screenshot 2022-05-18 102604.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\HelpImage\Screenshot 2022-05-18 120612.png" />
+    <Resource Include="Image\HelpImage\Screenshot 2022-05-18 120833.png" />
+    <Resource Include="Image\HelpImage\Screenshot 2022-05-18 120950.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\HelpImage\Screenshot 2022-05-18 123833.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\VideoLAN.LibVLC.Windows.3.0.16\build\VideoLAN.LibVLC.Windows.targets" Condition="Exists('..\packages\VideoLAN.LibVLC.Windows.3.0.16\build\VideoLAN.LibVLC.Windows.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

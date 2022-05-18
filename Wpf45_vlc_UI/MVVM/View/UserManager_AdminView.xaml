@@ -255,7 +255,7 @@
                                                                VerticalAlignment="Center"
                                                                FontWeight="Bold"
                                                                FontSize="15"/>
-                                        <Image Source="\Image\usericon.png"
+                                        <Image Source="/Image/usericon.png"
                                                            Height="18"
                                                            Width="18"/>
 
