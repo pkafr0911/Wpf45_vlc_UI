@@ -318,7 +318,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
 
             });
             //command chuyển tab sang BuyPacket
-            BuyPacketCommand = new MainRelayCommand(o =>
+            BuyPackageCommand = new MainRelayCommand(o =>
             {
                 #region Get Account Infor
                 //lấy thông tin của account
@@ -381,7 +381,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
         public MainRelayCommand MyAccountCommand { get; set; }
         public MainRelayCommand CameraCommand { get; set; }
         public MainRelayCommand UserManagerCommand { get; set; }
-        public MainRelayCommand BuyPacketCommand { get; set; }
+        public MainRelayCommand BuyPackageCommand { get; set; }
         public MainRelayCommand AboutUsCommand { get; set; }
         public MainRelayCommand HelpCommand { get; set; }
         #endregion

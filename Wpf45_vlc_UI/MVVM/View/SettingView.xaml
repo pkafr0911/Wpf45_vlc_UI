@@ -44,12 +44,12 @@
                                Foreground="White"
                                Opacity="0.3"
                                Margin="0,1,0,1"></TextBlock>
-                    <RadioButton  Content="Buy Packet"
+                    <RadioButton  Content="Buy Package"
                                       FontSize="20"
                                       Height="50"
                                       Foreground="White"
                                       Style="{StaticResource MenuButtonTheme}"
-                                      Command="{Binding BuyPacketCommand}"/>
+                                      Command="{Binding BuyPackageCommand}"/>
                     <RadioButton  Content="About Us"
                                       FontSize="20"
                                       Height="50"
