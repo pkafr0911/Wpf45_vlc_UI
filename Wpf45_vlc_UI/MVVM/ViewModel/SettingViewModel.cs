@@ -372,7 +372,7 @@ namespace Wpf45_vlc_UI.MVVM.ViewModel
             {
                 logOut();
             });
-            #endregion
+            #endregion 
 
 
         }
